@@ -2,7 +2,7 @@ import unittest
 
 
 class Polynom(object):
-    def __init__(self, mylist=[]):
+    def __init__(self, mylist = []):
         self.coeffs = mylist
 
     def __str__(self):
@@ -11,10 +11,9 @@ class Polynom(object):
         for i in self.coeffs:
             if i != 0:
                 if i == 1:
+                    if iterator != 0:
+                        st += "+"
                     if iterator == len(self.coeffs)-1:
-                        if iterator != 0:
-                            if i > 0:
-                                st += "+"
                         st += str(i)
                 else:
                     if iterator != 0:
@@ -24,12 +23,8 @@ class Polynom(object):
                 degree = len(self.coeffs) - iterator - 1
                 if degree > 1:
                     st += "x^" + str(degree)
-                    #if i > 0:
-                        #st += "+"
                 elif degree == 1:
                     st += "x"
-                    #if i > 0:
-                        #st += "+"
                 elif degree == 0:
                     st += ""
                 iterator += 1
