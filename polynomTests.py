@@ -52,39 +52,55 @@ class TestPolynom(unittest.TestCase):
         pol = Polynom(list1)
         self.assertEqual("3x^2+2x+1", pol.__str__())
 
-    def testStrOutWithOneToX(self):
+    def testStrOutWithOneOnStart(self):
             list1 = [1, 7, 1, 3, 5, 10]
             pol = Polynom(list1)
             self.assertEqual("x^5+7x^4+x^3+3x^2+5x+10", pol.__str__())
+
+    def testStrOutWithOneOnStartAndEnd(self):
+        list1 = [1, 7, 1, 3, 5, 1]
+        pol = Polynom(list1)
+        self.assertEqual("x^5+7x^4+x^3+3x^2+5x+1", pol.__str__())
 
     def testStrOutWithMines(self):
         list1 = [1, -7, 1, -3, 5, -10]
         pol = Polynom(list1)
         self.assertEqual("x^5-7x^4+x^3-3x^2+5x-10", pol.__str__())
 
-    def testStrOutWithMines2(self):
+    def testStrOutWithMinesOnOneInStartAndEnd(self):
         list1 = [-1, -1, -2, -3, -5, -1]
         pol = Polynom(list1)
         self.assertEqual("-x^5-x^4-2x^3-3x^2-5x-1", pol.__str__())
 
-    def testStrOutWithMines3(self):
+    def testStrOutOnes(self):
         list1 = [1, 1, 1, 1, 1, 1]
         pol = Polynom(list1)
         self.assertEqual("x^5+x^4+x^3+x^2+x+1", pol.__str__())
 
-    def testStrOutWithMines3(self):
+    def testStrOutMinusOnes(self):
         list1 = [-1, -1, -1, -1, -1, -1]
         pol = Polynom(list1)
         self.assertEqual("-x^5-x^4-x^3-x^2-x-1", pol.__str__())
 
-    def testStrOutWithZero(self):
+    def testStrOutWithZeroInMiddle(self):
             list1 = [3, 2, 0, 0, 0, 4]
             pol = Polynom(list1)
             self.assertEqual("3x^5+2x^4+4", pol.__str__())
-    def testStrOutWithZero1(self):
+
+    def testStrOutWithZeroInBegin(self):
             list1 = [0, 0, -1]
             pol = Polynom(list1)
             self.assertEqual("-1", pol.__str__())
+
+    def testStrOutWithZeroInBegin(self):
+            list1 = [0, 5, -1]
+            pol = Polynom(list1)
+            self.assertEqual("5x-1", pol.__str__())
+
+    def testStrOutWithZeroInBeginAndEnd(self):
+        list1 = [0, 5, 0]
+        pol = Polynom(list1)
+        self.assertEqual("5x", pol.__str__())
 pass
 
 
