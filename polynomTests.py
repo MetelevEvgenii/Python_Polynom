@@ -10,7 +10,7 @@ class Polynom(object):
         iterator = 0
         for i in self.coeffs:
             if i != 0:
-                if iterator != 0:
+                if st != "":
                     if i > 0:
                         st += "+"
                 if i == -1:
@@ -91,6 +91,11 @@ class TestPolynom(unittest.TestCase):
             list1 = [0, 0, -1]
             pol = Polynom(list1)
             self.assertEqual("-1", pol.__str__())
+
+    def testStrOutWithZeroInBegin(self):
+        list1 = [0, 0, 1]
+        pol = Polynom(list1)
+        self.assertEqual("1", pol.__str__())
 
     def testStrOutWithZeroInBegin(self):
             list1 = [0, 5, -1]
