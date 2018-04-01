@@ -29,6 +29,8 @@ class Polynom(object):
                 elif degree == 0:
                     st += ""
                 iterator += 1
+            else:
+                iterator += 1
         return st
         pass
 
@@ -75,6 +77,14 @@ class TestPolynom(unittest.TestCase):
         pol = Polynom(list1)
         self.assertEqual("-x^5-x^4-x^3-x^2-x-1", pol.__str__())
 
+    def testStrOutWithZero(self):
+            list1 = [3, 2, 0, 0, 0, 4]
+            pol = Polynom(list1)
+            self.assertEqual("3x^5+2x^4+4", pol.__str__())
+    def testStrOutWithZero1(self):
+            list1 = [0, 0, -1]
+            pol = Polynom(list1)
+            self.assertEqual("-1", pol.__str__())
 pass
 
 
