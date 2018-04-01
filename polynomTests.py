@@ -14,6 +14,9 @@ class Polynom(object):
                     if i > 0:
                         st += "+"
                 if i == -1:
+                    if iterator == len(self.coeffs)-1:
+                        st += str(i)
+                        break
                     st += "-"
                 elif i != 1 or iterator == len(self.coeffs)-1:
                     st += str(i)
@@ -58,9 +61,19 @@ class TestPolynom(unittest.TestCase):
         self.assertEqual("x^5-7x^4+x^3-3x^2+5x-10", pol.__str__())
 
     def testStrOutWithMines2(self):
-        list1 = [-1, -1, -2, -3, -5, -10]
+        list1 = [-1, -1, -2, -3, -5, -1]
         pol = Polynom(list1)
-        self.assertEqual("-x^5-x^4-2x^3-3x^2-5x-10", pol.__str__())
+        self.assertEqual("-x^5-x^4-2x^3-3x^2-5x-1", pol.__str__())
+
+    def testStrOutWithMines3(self):
+        list1 = [1, 1, 1, 1, 1, 1]
+        pol = Polynom(list1)
+        self.assertEqual("x^5+x^4+x^3+x^2+x+1", pol.__str__())
+
+    def testStrOutWithMines3(self):
+        list1 = [-1, -1, -1, -1, -1, -1]
+        pol = Polynom(list1)
+        self.assertEqual("-x^5-x^4-x^3-x^2-x-1", pol.__str__())
 
 pass
 
