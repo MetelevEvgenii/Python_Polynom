@@ -6,6 +6,14 @@ class Polynom(object):
     def __init__(self, mylist = []):
         self.coeffs = mylist
 
+    def equalLength(self, other):
+        while len(self.coeffs) != len(other.coeffs):
+            if len(self.coeffs) < len(other.coeffs):
+                self.coeffs.insert(0, 0)
+            else:
+                other.coeffs.insert(0, 0)
+            pass
+
     def __str__(self):
         st = ""
         iterator = 0
@@ -59,6 +67,15 @@ class Polynom(object):
             else:
                 num += 1
         return True
+
+    def __add__(self, other):
+        sumPol = Polynom
+        sumList = []
+        self.equalLength(other)
+        if len(self.coeffs) == len(other.coeffs):
+            for i, value in enumerate(self.coeffs, 0):
+                sumList.append(self.coeffs[i] + other.coeffs[i])
+        return sumPol(sumList)
 
 
 class TestPolynom(unittest.TestCase):
@@ -224,7 +241,7 @@ class TestPolynom(unittest.TestCase):
         pol2 = Polynom(list2)
         self.assertFalse(pol1 >= pol2)
 
-    def testComparisonMoreOrEq(self):
+    def testComparisonMoreOrEq2(self):
         list1 = [1, 2, 3]
         list2 = [1, 2, 3]
         pol1 = Polynom(list1)
@@ -244,6 +261,23 @@ class TestPolynom(unittest.TestCase):
         pol1 = Polynom(list1)
         pol2 = Polynom(list2)
         self.assertFalse(pol1 != pol2)
+
+    def testSum(self):
+        list1 = [5, 2, 4]
+        list2 = [3, 2, 1]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        pol3 = pol1 + pol2
+        self.assertEqual(pol3.coeffs, [8, 4, 5])
+
+    def testSum2(self):
+        list1 = [12, 4, 5, 2, 4]
+        list2 = [2, 1]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        pol3 = pol1 + pol2
+        self.assertEqual(pol3.coeffs, [12, 4, 5, 4, 5])
+
 
 pass
 
