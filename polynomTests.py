@@ -77,6 +77,14 @@ class Polynom(object):
                 sumList.append(self.coeffs[i] + other.coeffs[i])
         return sumPol(sumList)
 
+    def __sub__(self, other):
+        sumPol = Polynom
+        sumList = []
+        self.equalLength(other)
+        if len(self.coeffs) == len(other.coeffs):
+            for i, value in enumerate(self.coeffs, 0):
+                sumList.append(self.coeffs[i] - other.coeffs[i])
+        return sumPol(sumList)
 
 class TestPolynom(unittest.TestCase):
 
@@ -278,6 +286,29 @@ class TestPolynom(unittest.TestCase):
         pol3 = pol1 + pol2
         self.assertEqual(pol3.coeffs, [12, 4, 5, 4, 5])
 
+    def testSum3(self):
+        list1 = [12, -4, 5, -2, 4]
+        list2 = [-3, 2, 1]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        pol3 = pol1 + pol2
+        self.assertEqual(pol3.coeffs, [12, -4, 2, 0, 5])
+
+    def testSum4(self):
+        list1 = [-4, 5, -2, 4]
+        list2 = [0, 5, -3, 2, 1]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        pol3 = pol1 + pol2
+        self.assertEqual(pol3.coeffs, [0, 1, 2, 0, 5])
+
+    def testSubtraction(self):
+        list1 = [-4, 5, -2, 4]
+        list2 = [0, 5, -3, 2, 1]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        pol3 = pol1 - pol2
+        self.assertEqual(pol3.coeffs, [0, -9, 8, -4, 3])
 
 pass
 
