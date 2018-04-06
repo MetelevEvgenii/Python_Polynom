@@ -48,6 +48,17 @@ class Polynom(object):
                 num += 1
         return False
 
+    def __ge__(self, other):
+        num = 0
+        for cof in self.coeffs:
+            if cof > other.coeffs[num]:
+                return True
+            elif cof < other.coeffs[num]:
+                return False
+            else:
+                num += 1
+        return True
+
 
 class TestPolynom(unittest.TestCase):
 
@@ -176,6 +187,48 @@ class TestPolynom(unittest.TestCase):
         pol1 = Polynom(list1)
         pol2 = Polynom(list2)
         self.assertTrue(pol1 > pol2)
+
+    def testComparisonLess(self):
+        list1 = [1, 3, 3]
+        list2 = [2, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 < pol2)
+
+    def testComparisonMoreOrEq(self):
+        list1 = [1, 2, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 >= pol2)
+
+    def testComparisonMoreOrEq2(self):
+        list1 = [1, 3, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 >= pol2)
+
+    def testComparisonMoreOrEq3(self):
+        list1 = [4, 2, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 >= pol2)
+
+    def testComparisonMoreOrEq(self):
+        list1 = [1, 0, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertFalse(pol1 >= pol2)
+
+    def testComparisonMoreOrEq(self):
+        list1 = [1, 2, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 <= pol2)
 pass
 
 
