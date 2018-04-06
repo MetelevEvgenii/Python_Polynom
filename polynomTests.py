@@ -35,6 +35,7 @@ class Polynom(object):
         pass
 
 
+
 class TestPolynom(unittest.TestCase):
 
     def testInit(self):
