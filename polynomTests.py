@@ -34,6 +34,19 @@ class Polynom(object):
         return st
         pass
 
+    def __eq__(self, other):
+        return self.coeffs == other.coeffs
+
+    def __gt__(self, other):
+        num = 0
+        for cof in self.coeffs:
+            if cof > other.coeffs[num]:
+                return True
+            elif cof < other.coeffs[num]:
+                return False
+            else:
+                num += 1
+        return False
 
 
 class TestPolynom(unittest.TestCase):
@@ -107,6 +120,62 @@ class TestPolynom(unittest.TestCase):
         list1 = [0, 5, 0]
         pol = Polynom(list1)
         self.assertEqual("5x", pol.__str__())
+
+    def testComparisonEquality(self):
+        list1 = [1, 2, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 == pol2)
+
+    def testComparisonNotEquality(self):
+        list1 = [3, 2, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertFalse(pol1 == pol2)
+
+    def testComparisonMore(self):
+        list1 = [3, 2, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 > pol2)
+
+    def testComparisonMore2(self):
+        list1 = [1, 2, 3]
+        list2 = [3, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertFalse(pol1 > pol2)
+
+    def testComparisonMore3(self):
+        list1 = [1, 2, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertFalse(pol1 > pol2)
+
+    def testComparisonMore4(self):
+        list1 = [1, 3, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 > pol2)
+
+    def testComparisonMore5(self):
+        list1 = [1, 2, 4]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 > pol2)
+
+    def testComparisonMoreZeros(self):
+        list1 = [1, 2, 3]
+        list2 = [1, 0, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 > pol2)
 pass
 
 
