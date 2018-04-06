@@ -245,7 +245,6 @@ class TestPolynom(unittest.TestCase):
         pol2 = Polynom(list2)
         self.assertFalse(pol1 != pol2)
 
-       
 pass
 
 
