@@ -1,5 +1,6 @@
 import unittest
 
+#@total_ordering для перегрузки другой половины сравнения
 
 class Polynom(object):
     def __init__(self, mylist = []):
@@ -229,6 +230,22 @@ class TestPolynom(unittest.TestCase):
         pol1 = Polynom(list1)
         pol2 = Polynom(list2)
         self.assertTrue(pol1 <= pol2)
+
+    def testComparisonUnequal(self):
+        list1 = [1, 3, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertTrue(pol1 != pol2)
+
+    def testComparisonUnequal(self):
+        list1 = [1, 2, 3]
+        list2 = [1, 2, 3]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        self.assertFalse(pol1 != pol2)
+
+       
 pass
 
 
