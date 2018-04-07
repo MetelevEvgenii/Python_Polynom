@@ -86,6 +86,21 @@ class Polynom(object):
                 sumList.append(self.coeffs[i] - other.coeffs[i])
         return sumPol(sumList)
 
+    def __mul__(self, num):
+        mulPol = Polynom
+        mulList = []
+        for i, value in enumerate(self.coeffs, 0):
+            mulList.append(self.coeffs[i] * num)
+        return mulPol(mulList)
+
+    def __rmul__(self, num):
+        mulPol = Polynom
+        mulList = []
+        for i, value in enumerate(self.coeffs, 0):
+            mulList.append(num * self.coeffs[i])
+        return mulPol(mulList)
+
+
 class TestPolynom(unittest.TestCase):
 
     def testInit(self):
@@ -309,6 +324,25 @@ class TestPolynom(unittest.TestCase):
         pol2 = Polynom(list2)
         pol3 = pol1 - pol2
         self.assertEqual(pol3.coeffs, [0, -9, 8, -4, 3])
+
+    def testConstMult(self):
+        list1 = [5, -2, 4]
+        pol1 = Polynom(list1)
+        pol3 = pol1 * 3
+        self.assertEqual(pol3.coeffs, [15, -6, 12])
+
+    def testConstMult2(self):
+        list1 = [-4, 5, 0, 4]
+        pol1 = Polynom(list1)
+        pol3 = pol1 * -2
+        self.assertEqual(pol3.coeffs, [8, -10, 0, -8])
+
+    def testConstMult2(self):
+        list1 = [-4, 5, 0, 4]
+        pol1 = Polynom(list1)
+        pol3 = -3 * pol1
+        self.assertEqual(pol3.coeffs, [12, -15, 0, -12])
+
 
 pass
 
