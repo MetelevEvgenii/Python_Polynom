@@ -310,6 +310,15 @@ class TestPolynom(unittest.TestCase):
         pol3 = pol1 - pol2
         self.assertEqual(pol3.coeffs, [0, -9, 8, -4, 3])
 
+    def testConstMult(self):
+        list1 = [-2, 4]
+        list2 = [-3, 2, 1]
+        pol1 = Polynom(list1)
+        pol2 = Polynom(list2)
+        pol3 = pol1 - pol2
+        self.assertEqual(pol3.coeffs, [0, -9, 8, -4, 3])
+
+
 pass
 
 
